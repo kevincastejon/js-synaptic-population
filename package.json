@@ -1,0 +1,14 @@
+{
+  "name": "synapticjs-evolving-population",
+  "version": "1.0.0",
+  "description": "A population of neural networks built over synapticjs using evoution process instead of backpropagation",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "lepioo",
+  "license": "ISC",
+  "dependencies": {
+    "synaptic": "^1.1.4"
+  }
+}
