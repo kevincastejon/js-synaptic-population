@@ -26,7 +26,7 @@ const pop = new Population({
 })
 
 // Start a fresh population
-pop.start();    // Optionally give a json parameter if you previously exported evolved population ( see exportToJSON method )
+pop.start();    // Optionally give a JSON parameter if you previously exported evolved population ( see exportToJSON method )
 
 // Activate brains
 pop.activateBrain(brainID, input);
@@ -42,7 +42,7 @@ pop.evolve();
 
 ## API
 
-### Properties
+### Properties (should be used as READ-ONLY)
 
 - demography : int,                     // Number of brains in the population. Default 10    .            
 - eliteDemography : int,                // Number of brains that will survive natural selection on each generation. Default 4.
@@ -73,7 +73,7 @@ pop.evolve();
 
 //  Start a fresh population (create the population)
 - start(evolvedPopulation = null)
-  Optionally give a json parameter if you previously exported evolved population ( see exportToJSON method )
+  Optionally give a JSON parameter if you previously exported evolved population ( see exportToJSON method )
 
 //  Activate a brain neurons with inputs array
 - activateBrain(id, inputs)
