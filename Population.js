@@ -2,20 +2,21 @@ const synaptic = require('synaptic');
 
 class Population {
   constructor(options) {
-    this.demography = options.demography || 10;
-    this.eliteDemography = options.eliteDemography || 4;
-    this.extinction = options.extinction !== undefined ? options.extinction : null;
-    this.extinctions = 0;
-    this.inputs = options.inputs || 2;
-    this.outputs = options.outputs || 2;
-    this.hiddenLayers = options.hiddenLayers || [8];
-    this.mutateRate = options.mutateRate || 0.2;
+    this.demography = options.demography !== undefined ? options.demography : 10;
+    this.eliteDemography = options.eliteDemography !== undefined ? options.eliteDemography : 4;
+    this.extinctionFitness = options.extinction !== undefined ? options.extinction : null;
+    this.extinctionCount = 0;
+    this.inputs = options.inputs !== undefined ? options.inputs : 1;
+    this.outputs = options.outputs !== undefined ? options.outputs : 1;
+    this.hiddenLayers = options.hiddenLayers !== undefined ? options.hiddenLayers : [8];
+    this.mutateRate = options.mutateRate !== undefined ? options.mutateRate : 0.2;
     if (this.demography < this.eliteDemography) this.eliteDemography = this.demography;
     this.brains = [];
     this.generation = 1;
+    this.mutateFactor = 3;
   }
 
-  create(pTrainedPop = null) {
+  start(pTrainedPop = null) {
     const trainedPop = pTrainedPop || { generation: 1, pop: [] };
     this.brains = [];
     this.generation = trainedPop.generation;
@@ -32,14 +33,26 @@ class Population {
     }
   }
 
+  activateBrain(id, inputs) {
+    return this.brains[id].activate(inputs);
+  }
+
+  setBrainFitness(id, fitness) {
+    this.brains[id].fitness = fitness;
+  }
+
+  getBrain(id) {
+    return this.brains[id];
+  }
+
   evolve() {
     this.brains.sort((a, b) => a.fitness < b.fitness);
-    if (this.extinction !== null && this.brains[0].fitness < this.extinction) {
+    if (this.extinctionFitness !== null && this.brains[0].fitness < this.extinctionFitness) {
       const tempRate = this.mutateRate;
       this.mutateRate = 1;
-      this.create();
+      this.start();
       this.mutateRate = tempRate;
-      this.extinctions += 1;
+      this.extinctionCount += 1;
     } else {
     // fill the rest of the next population with new units using crossover and mutation
       for (let i = 0; i < this.demography; i += 1) {
@@ -47,12 +60,14 @@ class Population {
         // Replace the loosers
           let offspring;
 
-          if (i === this.eliteDemography) {
+          if (i < ((this.demography- this.eliteDemography)/2)+this.eliteDemography) {
+            // console.log('first non-elite', i);
           // offspring is made by a crossover of two best winners
             offspring = Population.crossOver(this.brains[0].toJSON(), this.brains[1].toJSON());
-          } else if (i > this.eliteDemography) {
+          } else {
+            // console.log('rest non-elite', i);
           // offspring is made by a crossover of two random winners
-            const randomCouple = this.brains.concat().sort(() => Math.random() > 0.5).splice(0, 2);
+            const randomCouple = this.brains.concat().splice(0, this.eliteDemography).sort(() => Math.random() > 0.5).splice(0, 2);
             offspring = Population.crossOver(randomCouple[0].toJSON(), randomCouple[1].toJSON());
           }
           // mutate the offspring
@@ -61,6 +76,8 @@ class Population {
           const newBrain = synaptic.Network.fromJSON(offspring);
           // newBrain.fitness = 0;
           this.brains[i] = newBrain;
+        } else {
+          // console.log('elite', i);
         }
         this.brains[i].fitness = 0;
       }
@@ -68,6 +85,9 @@ class Population {
     }
   }
 
+  exportToJSON(){
+    return this.brains.map(b => b.toJSON());
+  }
   // performs a single point crossover between two parents
   static crossOver(parentA, parentB) {
     const pA = parentA;
@@ -107,8 +127,11 @@ class Population {
   mutate(pGene) {
     let gene = pGene;
     if (Math.random() < this.mutateRate) {
-      const mutateFactor = 1 + ((Math.random() - 0.5) * 3 + (Math.random() - 0.5));
-      gene *= mutateFactor;
+      // console.log('before:', gene);
+      // const factor = 1 + ((Math.random() - 0.5) * 3 + (Math.random() - 0.5));
+      const factor = (Math.random() * this.mutateFactor*2)-this.mutateFactor/2;
+      gene *= factor;
+      // console.log('mutated:', gene  );
     }
     return gene;
   }
@@ -117,8 +140,5 @@ class Population {
     return Math.floor(Math.random() * (max - min + 1) + min);
   }
 
-  static getRandomUnit(array) {
-    return array[Population.random(0, array.length - 1)];
-  }
 }
-export default Population;
+module.exports = Population;
