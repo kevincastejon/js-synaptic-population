@@ -63,13 +63,13 @@ pop.evolve();
 //  Instantiate a population with some options
 - constructor(options = null)
   Options object properties :
-  - demography : 20,          // Number of brains in the population. Default 10    .            
-  - eliteDemography : 8,      // Number of brains that will survive natural selection on each generation. Default 4.
-  - extinctionFitness : -100, // If all brains in a generation get a lower score that this parameter, then all the population is reset. Default null.
-  - inputs : 2,               // Number of inputs required to activate brains. Default 1.
-  - outputs : 2,              // Number of outputs returned from the brains. Default 1.
-  - hiddenLayers : [6,6],       // Array of numbers representing the hidden layers neurons. Default [8] (one hidden layer of 8 neurons)
-  - mutateRate : 0.2          // Mutation rate from 0 (no mutation) to 1 (all the children mutates) applied when evolving
+  - demography : int,                           // Number of brains in the population. Default 10    .            
+  - eliteDemography : int,                      // Number of brains that will survive natural selection on each generation. Default 4.
+  - extinctionFitness : number or null,         // If all brains in a generation get a lower score that this parameter, then all the population is reset. Default null.
+  - inputs : int,                               // Number of inputs required to activate brains. Default 1.
+  - outputs : int,                              // Number of outputs returned from the brains. Default 1.
+  - hiddenLayers : array of int,                // Array of numbers representing the hidden layers neurons. Default [8] (one hidden layer of 8 neurons)
+  - mutateRate : float [0-1]                    // Mutation rate from 0 (no mutation) to 1 (all the children mutates) applied when evolving
 
 //  Start a fresh population (create the population)
 - start(evolvedPopulation = null)

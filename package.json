@@ -10,5 +10,27 @@
   "license": "ISC",
   "dependencies": {
     "synaptic": "^1.1.4"
-  }
+  },
+  "directories": {
+    "example": "examples"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lePioo/neural-evolving-population.git"
+  },
+  "keywords": [
+    "deep",
+    "learning",
+    "neural",
+    "network",
+    "evolve",
+    "population",
+    "js",
+    "synaptic"
+  ],
+  "bugs": {
+    "url": "https://github.com/lePioo/neural-evolving-population/issues"
+  },
+  "homepage": "https://github.com/lePioo/neural-evolving-population#readme"
 }
