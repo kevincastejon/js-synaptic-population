@@ -49,8 +49,8 @@ pop.evolve();
 - extinctionFitness : number or null,   // If all brains in a generation get a lower score that this parameter, then all the population is reset. Default null.
 - inputs : int,                // Number of inputs required to activate brains. Default 1.
 - outputs : int,               // Number of outputs returned from the brains. Default 1.
-- hiddenLayers : array of int,          // Array of numbers representing the hidden layers neurons. Default [8] (one hidden layer of 8 neurons)
-- mutateRate : float [0-1]              // Mutation rate from 0 (no mutation) to 1 (all the children mutates) applied when evolving
+- hiddenLayers : array of int,          // Array of numbers representing the hidden layers neurons. Default \[8] (one hidden layer of 8 neurons)
+- mutateRate : float [0-1]              // Mutation rate from 0 (no mutation) to 1 (all the children mutates) applied when evolving. Default 0.2.
 - brains : array                        // Array of neural networks.
 - generation : int                      // Number of generation that occurred into the population.
 - mutateFactor : int                    // The degree of mutation applied when mutating a child. Default 3.
@@ -66,7 +66,7 @@ pop.evolve();
   - inputs : int,                               // Number of inputs required to activate brains. Default 1.
   - outputs : int,                              // Number of outputs returned from the brains. Default 1.
   - hiddenLayers : array of int,                // Array of numbers representing the hidden layers neurons. Default [8] (one hidden layer of 8 neurons)
-  - mutateRate : float [0-1]                    // Mutation rate from 0 (no mutation) to 1 (all the children mutates) applied when evolving
+  - mutateRate : float [0-1]                    // Mutation rate from 0 (no mutation) to 1 (all the children mutates) applied when evolving. Default 0.2.
 
 //  Start a fresh population (create the population)
 - start(evolvedPopulation = null)
