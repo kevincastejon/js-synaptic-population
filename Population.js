@@ -10,22 +10,29 @@ class Population {
     this.outputs = options.outputs !== undefined ? options.outputs : 1;
     this.hiddenLayers = options.hiddenLayers !== undefined ? options.hiddenLayers : [8];
     this.mutateRate = options.mutateRate !== undefined ? options.mutateRate : 0.2;
+    const trainedPop = (options.trainedPop !== undefined && options.trainedPop !== null) ? options.trainedPop : { generation: 1, pop: [] };
     if (this.demography < this.eliteDemography) this.eliteDemography = this.demography;
     this.brains = [];
     this.generation = 1;
     this.mutateFactor = 3;
-  }
-
-  start(pTrainedPop = null) {
-    const trainedPop = pTrainedPop || { generation: 1, pop: [] };
-    this.brains = [];
-    this.generation = trainedPop.generation;
-
     for (let i = 0; i < this.demography; i += 1) {
       const newBrain = trainedPop.pop[i]
         ? synaptic.Network.fromJSON(trainedPop.pop[i])
         : new synaptic.Architect.Perceptron(this.inputs, ...this.hiddenLayers, this.outputs);
 
+      const jsonBrain = newBrain.toJSON();
+      const mutatedBrain = synaptic.Network.fromJSON(this.mutation(jsonBrain));
+      mutatedBrain.fitness = 0;
+      this.brains.push(mutatedBrain);
+    }
+  }
+
+  reset() {
+    this.brains = [];
+    this.generation = 1;
+
+    for (let i = 0; i < this.demography; i += 1) {
+      const newBrain = new synaptic.Architect.Perceptron(this.inputs, ...this.hiddenLayers, this.outputs);
       const jsonBrain = newBrain.toJSON();
       const mutatedBrain = synaptic.Network.fromJSON(this.mutation(jsonBrain));
       mutatedBrain.fitness = 0;
@@ -85,7 +92,7 @@ class Population {
     }
   }
 
-  exportToJSON(){
+  toJSON(){
     return this.brains.map(b => b.toJSON());
   }
   // performs a single point crossover between two parents

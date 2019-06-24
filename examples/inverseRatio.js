@@ -5,7 +5,7 @@ const Population = require('../Population');
 //  Ex --> input : 0.74  expected output : 0.26
 //
 
-// Init our population rules
+// Create a population with some optionals rules
 const population = new Population({
   demography : 10,            // Number of brains in the population. Default 10.
   eliteDemography : 4,        // Number of brains that will survive natural selection on each generation. Default 4.
@@ -13,11 +13,10 @@ const population = new Population({
   inputs : 1,                 // Number of inputs required to activate brains. Default 2.
   outputs : 1,                // Number of outputs returned from the brains. Default 1.
   hiddenLayers : [8],         // Array of numbers representing the hidden layers neurons. Default [8] (one hidden layer of 8 neurons)
-  mutateRate : 0.2            // Mutation rate from 0 (no mutation) to 1 (full mutation) applied when evolving
+  mutateRate : 0.2,            // Mutation rate from 0 (no mutation) to 1 (full mutation) applied when evolving
+  trainedPop: null            // retrieve a previously exported population (see method toJSON())
 });
 
-// Start a fresh population
-population.start();
 // Define a precision cap at witch we'll stop the evolution
 const precisionGoal = 0.985;
 

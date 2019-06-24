@@ -1,12 +1,12 @@
 {
-  "name": "neural-evolving-population",
-  "version": "1.2.0",
+  "name": "synaptic-population",
+  "version": "1.0.0",
   "description": "A population of neural networks built over synapticjs using evolution process instead of backpropagation",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "lepioo",
+  "author": "kevincastejon",
   "license": "ISC",
   "dependencies": {
     "synaptic": "^1.1.4"
@@ -15,10 +15,6 @@
     "example": "examples"
   },
   "devDependencies": {},
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/lePioo/neural-evolving-population.git"
-  },
   "keywords": [
     "deep",
     "learning",
@@ -29,8 +25,12 @@
     "js",
     "synaptic"
   ],
-  "bugs": {
-    "url": "https://github.com/lePioo/neural-evolving-population/issues"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kevincastejon/js-synaptic-population.git"
   },
-  "homepage": "https://github.com/lePioo/neural-evolving-population#readme"
+  "bugs": {
+    "url": "https://github.com/kevincastejon/js-synaptic-population/issues"
+  },
+  "homepage": "https://github.com/kevincastejon/js-synaptic-population#readme"
 }
