@@ -46,7 +46,7 @@ pop.evolve();
 // And do it again until your population does what you want them to do !
 ```
 
-See more accurate usages into 'examples' folder
+See x
 
 ## API
 
