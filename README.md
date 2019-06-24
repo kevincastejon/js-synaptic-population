@@ -76,6 +76,7 @@ See x
     - hiddenLayers = [8],         // Array of numbers representing the hidden layers neurons. Default [8] (one hidden layer of 8 neurons)
     - mutateRate = 0.2,            // Mutation rate from 0 (no mutation) to 1 (full mutation) applied when evolving. Default 0.2
     - trainedPop = null            // Retrieve a previously exported population (see method toJSON()). Default null
+    
 });
 
 //  Activate a brain neurons with inputs array
