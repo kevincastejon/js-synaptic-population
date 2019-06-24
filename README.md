@@ -31,7 +31,7 @@ const population = new Population({
   outputs : 1,                // Number of outputs returned from the brains. Default 1.
   hiddenLayers : [8],         // Array of numbers representing the hidden layers neurons. Default [8] (one hidden layer of 8 neurons)
   mutateRate : 0.2,            // Mutation rate from 0 (no mutation) to 1 (full mutation) applied when evolving
-  trainedPop: null            // retrieve a previously exported population (see method toJSON())
+  trainedPop: null            // Retrieve a previously exported population (see method toJSON())
 });
 
 // Activate brains
@@ -67,15 +67,15 @@ See x
 ### Methods
 
 // Create a population with some optionals rules
-const population = new Population({
-  demography : 10,            // Number of brains in the population. Default 10.
-  eliteDemography : 4,        // Number of brains that will survive natural selection on each generation. Default 4.
-  extinctionFitness : null,   // If all brains in a generation get a lower score that this parameter, then all the population is reset. Default null.
-  inputs : 1,                 // Number of inputs required to activate brains. Default 2.
-  outputs : 1,                // Number of outputs returned from the brains. Default 1.
-  hiddenLayers : [8],         // Array of numbers representing the hidden layers neurons. Default [8] (one hidden layer of 8 neurons)
-  mutateRate : 0.2,            // Mutation rate from 0 (no mutation) to 1 (full mutation) applied when evolving
-  trainedPop: null            // retrieve a previously exported population (see method toJSON())
+- constructor({
+  demography = 10,            // Number of brains in the population. Default 10.
+  eliteDemography = 4,        // Number of brains that will survive natural selection on each generation. Default 4.
+  extinctionFitness = null,   // If all brains in a generation get a lower score that this parameter, then all the population is reset. Default null.
+  inputs = 2,                 // Number of inputs required to activate brains. Default 2.
+  outputs = 1,                // Number of outputs returned from the brains. Default 1.
+  hiddenLayers = [8],         // Array of numbers representing the hidden layers neurons. Default [8] (one hidden layer of 8 neurons)
+  mutateRate = 0.2,            // Mutation rate from 0 (no mutation) to 1 (full mutation) applied when evolving. Default 0.2
+  trainedPop = null            // Retrieve a previously exported population (see method toJSON()). Default null
 });
 
 //  Activate a brain neurons with inputs array
