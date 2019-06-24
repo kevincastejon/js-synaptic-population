@@ -35,13 +35,13 @@ const population = new Population({
 });
 
 // Activate brains
-pop.activateBrain(brainID, inputs);
+population.activateBrain(brainID, inputs);
 
 // Set fitness of brains
-pop.setBrainFitness(brainID, fitness);
+population.setBrainFitness(brainID, fitness);
 
 // Evolve
-pop.evolve();
+population.evolve();
 
 // And do it again until your population does what you want them to do !
 ```
