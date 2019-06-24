@@ -1,7 +1,7 @@
 const synaptic = require('synaptic');
 
 class Population {
-  constructor(options) {
+  constructor(options = {}) {
     this.demography = options.demography !== undefined ? options.demography : 10;
     this.eliteDemography = options.eliteDemography !== undefined ? options.eliteDemography : 4;
     this.extinctionFitness = options.extinction !== undefined ? options.extinction : null;
