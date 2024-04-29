@@ -2,6 +2,9 @@
 
 A population of neural networks built over (synapticjs)[https://caza.la/synaptic/] using evolution process instead of backpropagation
 
+Examples of implementation:
+[Target Finder](https://kevincastejon.fr/demos/deep-learning-demo-target-finder/)
+[Image Filter](https://github.com/kevincastejon/js-synaptic-population-image-filter)
 
 ## Installation
 
